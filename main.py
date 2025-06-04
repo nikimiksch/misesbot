@@ -4,7 +4,10 @@ import openai
 
 load_dotenv()
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
+api_key = os.getenv("OPENAI_API_KEY")
+if not api_key:
+    raise EnvironmentError("OPENAI_API_KEY not found in environment variables")
+openai.api_key = api_key
 
 # News-Beispiel: Wird später ersetzt durch Scraping
 nachricht = "Die EZB will KI regulieren."
